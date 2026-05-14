@@ -384,9 +384,9 @@ body{ font-family:'Inter';background: #1f2937;margin: 0 auto;
 }
 
 .rtr-season.active{
-  background:#67e8f9;
+  background:#D038FF;
   color:#08111f;
-  border-color:#67e8f9;
+  border-color:#D038FF;
 }
 
 .rtr-season img{
