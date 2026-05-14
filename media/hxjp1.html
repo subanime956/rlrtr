@@ -264,59 +264,103 @@
     <!-- EPISODIOS -->
 
   <!-- ✅ EPISODIOS FUERA de .rtr-page -->
-  <div class="rtr-episodes-outer">
-    <div class="rtr-container">
-      <div class="rtr-episodes-wrap">
-        <section class="rtr-episodes">
-          <div class="rtr-episodes-head">
-            <h2 class="rtr-episodes-title">Episodios</h2>
+<div class="rtr-episodes-outer">
+    <section class="rtr-episodes">
 
-            <div class="rtr-lang">
-              <button class="rtr-lang-btn" id="langBtn"
-                type="button"
-                aria-haspopup="menu"
-                aria-expanded="false"
-                aria-controls="langMenu">
-                <span class="rtr-lang-ico" aria-hidden="true">🌐</span>
-                <span>Idiomas</span>
-                <span class="rtr-lang-pill" id="langCurrentPill"></span>
-                <svg class="rtr-lang-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              
-              <div class="rtr-lang-menu" id="langMenu" role="menu" aria-label="Seleccionar idioma">
-                
-                <button type="button" class="rtr-lang-item" data-lang="original" role="menuitem">
-                  Original <span class="rtr-lang-note">Rule Original - Subtitulos Inglés</span>
-                </button>
-                <button type="button" class="rtr-lang-item" data-lang="lat_haf" role="menuitem">
-                  Latino - HAF <span class="rtr-lang-note">Fandub Latino de AF Studios</span>
-                </button>
-              
-              </div>
-            </div>
+      <!-- Esto es para temporadas -->
+      <h2 class="rtr-episodes-title rtr-title-space">Cronologia</h2>
+
+      <nav class="rtr-seasons">
+
+        <a class="rtr-season active" href="#">
+          <img src="/assets/img/HXJP1.webp" alt="Temporada 1">
+          <span>
+            <strong>Parte 1</strong>
+            <span>1 videos</span>
+          </span>
+        </a>
+
+      </nav>
+
+      <!-- Esto es para episodios + selector de idiomas -->
+      <div class="rtr-episodes-head">
+
+        <h2 class="rtr-episodes-title">Episodios</h2>
+
+        <!-- Esto es tu selector de idioma -->
+        <div class="rtr-lang">
+          <button class="rtr-lang-btn" id="langBtn"
+            type="button"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            aria-controls="langMenu">
+            <span class="rtr-lang-ico" aria-hidden="true">🌐</span>
+            <span>Idiomas</span>
+            <span class="rtr-lang-pill" id="langCurrentPill"></span>
+            <svg class="rtr-lang-chev" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div class="rtr-lang-menu" id="langMenu" role="menu" aria-label="Seleccionar idioma">
+
+            <button type="button" class="rtr-lang-item is-active" data-lang="original" role="menuitem">
+              Original <span class="rtr-lang-note">Rule Original - Subtítulos Inglés</span>
+            </button>
+
+            <button type="button" class="rtr-lang-item" data-lang="lat_haf" role="menuitem">
+              Latino - HAF <span class="rtr-lang-note">Fandub Latino de AF Studios</span>
+            </button>
+
+            <!--<button type="button" class="rtr-lang-item" data-lang="sub_es" role="menuitem">
+              SUB-ES <span class="rtr-lang-note">Subtítulos en español</span>
+            </button>-->
+
           </div>
+        </div>
 
-          <div class="rtr-ep-grid" id="episodesGrid">
-            <a class="rtr-ep-card" data-lang="original" href="/ver/raw-sub-eng-haf-hxjp1-1">
-              <div class="rtr-ep-thumb">
-                <img src="/assets/img/HXJP1-1.png" alt="Episodio 1">
-                <div class="rtr-ep-badge">Episodio 1</div>
-              </div>
-            </a>
-            
-            <a class="rtr-ep-card" data-lang="lat_haf" href="/ver/lat-haf-hxjp1-1">
-              <div class="rtr-ep-thumb">
-                <img src="/assets/img/HXJP1-1-Lat-HAF.png" alt="Episodio 1">
-                <div class="rtr-ep-badge">Episodio 1</div>
-              </div>
-            </a>
-
-          </div>
-        </section>
       </div>
-    </div>
+
+      <!-- Esto es para listado de episodios con TU sistema data-lang -->
+      <div class="rtr-ep-grid" id="episodesGrid">
+
+
+
+        <!-- ORIGINAL: Episodio 1 -->
+        <a class="rtr-ep-card" data-lang="original" href="/ver/raw-sub-eng-haf-hxjp1-1">
+          <div class="rtr-ep-thumb">
+            <img src="/assets/img/HXJP1-1.png" alt="Episodio 1 Original">
+
+          </div>
+          <div class="rtr-ep-info">
+            <h3 class="rtr-ep-title">Episodio 1</h3>
+            <div class="rtr-ep-version">Versión: <strong>Original - English Subtitles</strong></div>
+          </div>
+          <img class="rtr-ep-flag" src="https://flagcdn.com/w80/jp.png" alt="JP">
+        </a>
+
+
+
+
+        <!-- LATINO HAF: Episodio 1 -->
+        <a class="rtr-ep-card" data-lang="lat_haf" href="/ver/lat-haf-hxjp1-1">
+          <div class="rtr-ep-thumb">
+            <img src="/assets/img/HXJP1-1-Lat-HAF.png" alt="Episodio 1 Latino HAF">
+
+          </div>
+          <div class="rtr-ep-info">
+            <h3 class="rtr-ep-title">Episodio 1</h3>
+            <div class="rtr-ep-version">Versión: <strong>Doblaje Latino AF Studios</strong></div>
+          </div>
+          <img class="rtr-ep-flag" src="https://flagcdn.com/w80/mx.png" alt="MX">
+        </a>
+
+
+
+
+      </div>
+
+    </section>
   </div>
 
 </div>
