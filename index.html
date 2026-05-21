@@ -122,6 +122,39 @@
 
 <!-- MENÚ -->
 <div id="menu">
+  <div class="menu-profile">
+    <div class="menu-profile-bg"></div>
+
+    <button class="menu-profile-help" id="menuProfileHelp" type="button" onclick="toggleMenuInstructions(event)" aria-label="Ver instrucciones" aria-expanded="false">
+      <i class="fa fa-exclamation"></i>
+    </button>
+
+    <div class="menu-instructions-panel" id="menuInstructionsPanel" aria-hidden="true">
+      <strong>Instrucciones</strong>
+      <span>Configura tu nombre desde Biblioteca.</span>
+      <span>Toca la foto para cambiar tu perfil.</span>
+      <span>Todo se guarda solo en este dispositivo.</span>
+    </div>
+
+    <button class="menu-profile-avatar" id="profilePreview" type="button" onclick="openProfilePanel()" aria-label="Ver perfil">
+      <img id="profilePreviewImg" alt="Foto de perfil">
+      <i class="fa fa-user"></i>
+    </button>
+
+    <div class="menu-profile-info">
+      <p class="menu-profile-kicker">Biblioteca local</p>
+      <p class="menu-profile-title" id="menuLibraryName">Mi biblioteca</p>
+      <p class="menu-profile-subtitle" id="menuLibrarySubtitle">Instrucciones en &quot;!&quot;</p>
+    </div>
+
+    <a class="menu-profile-library" href="/favoritos.html">
+      <i class="fa fa-bookmark"></i>
+      <span>Ver mi biblioteca</span>
+    </a>
+
+    <input class="profile-file-input" id="profileImageInput" type="file" accept="image/*">
+  </div>
+
   <div class="menu-links">
     <a href="/"><i class="fa fa-home"></i>Inicio</a>
     <a href="/assets/link/Anime"><i class="fa fa-play-circle"></i>Anime</a>
