@@ -65,11 +65,11 @@ html, body {
 
 .header-container {
   max-width: 1250px;
-  margin: 0 auto; /* 🔥 centra horizontalmente */
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 12px 10px 12px; /* Arriba | Derecha | Abajo | Izquierda */
+  padding: 10px;
 }
 
 /* LOGO */
@@ -82,7 +82,9 @@ html, body {
 /* ICONOS DERECHA */
 .actions {
   display: flex;
+  align-items: center;
   gap: 5px;
+  position: relative;
 }
 
 .actions i {
@@ -96,6 +98,157 @@ html, body {
   color: #775cdc;
 }
 
+/* BOTONES DEL HEADER */
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.icon-btn i {
+  color: white;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+/* PERFIL DENTRO DEL TOGGLE */
+.menu-profile {
+  position: relative;
+  padding: 18px 14px 14px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(147, 51, 234, .55), transparent 42%),
+    linear-gradient(135deg, rgba(22, 130, 216, .40), rgba(49, 46, 129, .30));
+}
+
+.menu-profile-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.10), transparent 40%),
+    radial-gradient(circle at 95% 15%, rgba(255,255,255,.18), transparent 24%);
+  pointer-events: none;
+}
+
+.menu-profile-avatar {
+  position: relative;
+  width: 66px;
+  height: 66px;
+  margin: 0 auto 10px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(135deg, rgba(22, 130, 216, .85), rgba(147, 51, 234, .9));
+  border: 2px solid rgba(255,255,255,.32);
+  box-shadow: 0 12px 28px rgba(0,0,0,.28);
+}
+
+.menu-profile-avatar::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.18);
+  pointer-events: none;
+}
+
+.menu-profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+.menu-profile-avatar.has-image img {
+  display: block;
+}
+
+.menu-profile-avatar.has-image i {
+  display: none;
+}
+
+.menu-profile-avatar i {
+  font-size: 28px;
+}
+
+.menu-profile-info {
+  position: relative;
+  text-align: center;
+}
+
+.menu-profile-title {
+  margin: 0 0 3px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+.menu-profile-subtitle {
+  margin: 0;
+  color: rgba(255,255,255,.72);
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.menu-profile-actions {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.menu-profile-actions button {
+  min-height: 32px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 10px;
+  color: #fff;
+  background: rgba(255,255,255,.10);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background .2s ease, transform .2s ease, border-color .2s ease;
+}
+
+.menu-profile-actions button:hover {
+  background: rgba(255,255,255,.18);
+  border-color: rgba(255,255,255,.24);
+  transform: translateY(-1px);
+}
+
+.menu-profile-actions i {
+  font-size: 13px;
+  color: #ddd6fe;
+}
+
+.profile-file-input {
+  display: none;
+}
+
 /* MENÚ IZQUIERDA */
 #menu {
   position: fixed;
@@ -105,11 +258,13 @@ html, body {
   height: 100%;
   background-color: #00384d;
   box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-  z-index: 9999999999999999999999999999999;
+  z-index: 2000;
   transition: left 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 #menu.open {
@@ -132,42 +287,11 @@ html, body {
 .menu-links a:hover {
   background: rgba(255,255,255,0.1);
 }
+
 .menu-links a i {
   margin-right: 10px;
   width: 20px;
   text-align: center;
-}
-
-/* Mini Div */
-.icon-btn {
-  background: rgba(255, 255, 255, 0.08); /* 🔥 fondo suave */
-  border: 1px solid rgba(255, 255, 255, 0.15); /* borde tenue */
-  padding: 10px;
-  border-radius: 5px; /* 🔥 más cuadrado redondeado */
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  backdrop-filter: blur(6px); /* ✨ efecto glass */
-  -webkit-backdrop-filter: blur(6px);
-
-  transition: all 0.25s ease;
-}
-
-.icon-btn i {
- color: rgba(255,255,255,0.9);
-
-  color: white;
-  font-size: 16px;
-  pointer-events: none; /* 👈 importante */
-}
-
-/* Efecto hover bonito */
-.icon-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-
 }
 
 /* REDES ABAJO */
@@ -344,7 +468,6 @@ html, body {
 }
 
 
-
 /* CAMPANA */
 #notifToggle.active i {
   color: #00d1ff;
@@ -390,14 +513,67 @@ html, body {
   color:#aaa;
 }
 
+/* ===== PERFIL MEJORADO DENTRO DEL TOGGLE ===== */
+#menu {
+  background:
+    linear-gradient(180deg, #07384d 0%, #062f43 44%, #052838 100%);
+}
 
+.menu-profile {
+  padding: 18px 14px 16px;
+  border-bottom: 0;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.10);
+}
 
+.menu-profile-avatar {
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
 
+.menu-profile-avatar:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 34px rgba(0,0,0,.34), 0 0 0 4px rgba(147, 51, 234, .12);
+}
 
+.avatar-edit-dot {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #1682d8, #9333ea);
+  border: 2px solid rgba(255,255,255,.88);
+  box-shadow: 0 6px 14px rgba(0,0,0,.30);
+}
 
+.avatar-edit-dot i {
+  display: block !important;
+  font-size: 11px;
+  color: #fff;
+}
 
+.menu-profile-subtitle {
+  max-width: 190px;
+  margin-inline: auto;
+}
 
+.menu-links {
+  padding: 0;
+  margin: 0;
+}
 
+.menu-links a:first-child {
+  border-top: 0;
+}
+
+.menu-links a {
+  padding: 13px 18px;
+}
 
 .profile-panel {
   position: fixed;
