@@ -1,34 +1,237 @@
+const RTR_PROFILE_IMAGE_KEY = "rtr_profile_image";
+const RTR_LIBRARY_STORAGE_KEY = "rtrBibliotecaV9";
+
+function getLocalLibraryName(){
+  try {
+    if (window.RTR_BIBLIO && typeof window.RTR_BIBLIO.getUserName === "function") {
+      const apiName = String(window.RTR_BIBLIO.getUserName() || "").trim();
+      if (apiName) return apiName;
+    }
+  } catch (_) {}
+
+  try {
+    const state = JSON.parse(localStorage.getItem(RTR_LIBRARY_STORAGE_KEY) || "null");
+    const savedName = String((state && state.userName) || "").trim();
+    if (savedName) return savedName;
+  } catch (_) {}
+
+  return "";
+}
+
+function updateLibraryNameInHeader(){
+  const name = getLocalLibraryName();
+  const title = document.getElementById("menuLibraryName");
+  const subtitle = document.getElementById("menuLibrarySubtitle");
+  const panelTitle = document.getElementById("profilePanelTitle");
+  const panelSubtitle = document.getElementById("profilePanelSubtitle");
+  if (title) title.textContent = name || "Mi biblioteca";
+  if (subtitle) subtitle.textContent = 'Instrucciones en "!"';
+  if (panelTitle) panelTitle.textContent = name || "Mi biblioteca";
+  if (panelSubtitle) panelSubtitle.textContent = name
+    ? "Tu foto se guarda localmente en este navegador."
+    : "Guarda tu nombre desde Biblioteca para verlo aquí.";
+}
+
 function toggleMenu() {
   const menu = document.getElementById("menu");
   const overlay = document.getElementById("overlay");
 
-  const isOpen = menu.classList.toggle("open");
-  overlay.classList.toggle("active");
+  if (!menu || !overlay) return;
 
+  updateLibraryNameInHeader();
+  const isOpen = menu.classList.toggle("open");
+  overlay.classList.toggle("active", isOpen);
   document.body.classList.toggle("no-scroll", isOpen);
+  if (!isOpen) closeMenuInstructions();
 }
 
 function abrirBusqueda(){
   const bar = document.getElementById("searchBar");
+  if (!bar) return;
+
+  const menu = document.getElementById("menu");
+  const overlay = document.getElementById("overlay");
+  if (menu) menu.classList.remove("open");
+  if (overlay) overlay.classList.remove("active");
+  document.body.classList.remove("no-scroll");
+
   bar.classList.add("active");
 
   setTimeout(() => {
-    document.getElementById("searchInput").focus();
+    const input = document.getElementById("searchInput");
+    if (input) input.focus();
   }, 200);
 }
 
 function cerrarBusqueda(){
-  document.getElementById("searchBar").classList.remove("active");
+  const bar = document.getElementById("searchBar");
+  if (bar) bar.classList.remove("active");
 }
 
-document.getElementById("searchInput").addEventListener("keydown", function(e){
-  if(e.key === "Enter"){
-    const valor = this.value.trim();
-    if(valor !== ""){
-      window.location.href = "/catalogo?search=" + encodeURIComponent(valor);
-    }
+function toggleMenuInstructions(event){
+  if (event) event.stopPropagation();
+  const panel = document.getElementById("menuInstructionsPanel");
+  const btn = document.getElementById("menuProfileHelp");
+  if (!panel) return;
+
+  const isOpen = panel.classList.toggle("active");
+  panel.setAttribute("aria-hidden", isOpen ? "false" : "true");
+  if (btn) btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+}
+
+function closeMenuInstructions(){
+  const panel = document.getElementById("menuInstructionsPanel");
+  const btn = document.getElementById("menuProfileHelp");
+  if (!panel) return;
+
+  panel.classList.remove("active");
+  panel.setAttribute("aria-hidden", "true");
+  if (btn) btn.setAttribute("aria-expanded", "false");
+}
+
+function triggerProfileImagePicker(){
+  const input = document.getElementById("profileImageInput");
+  if (input) input.click();
+}
+
+function setProfileImage(src){
+  const preview = document.getElementById("profilePreview");
+  const previewImg = document.getElementById("profilePreviewImg");
+  const panelPreview = document.getElementById("profilePanelPreview");
+  const panelImg = document.getElementById("profilePanelImg");
+
+  if (previewImg) previewImg.src = src;
+  if (preview) preview.classList.add("has-image");
+
+  if (panelImg) panelImg.src = src;
+  if (panelPreview) panelPreview.classList.add("has-image");
+}
+
+function openProfilePanel(){
+  updateLibraryNameInHeader();
+  const panel = document.getElementById("profilePanel");
+  if (!panel) return;
+
+  panel.classList.add("active");
+  panel.setAttribute("aria-hidden", "false");
+  document.body.classList.add("no-scroll");
+}
+
+function closeProfilePanel(){
+  const panel = document.getElementById("profilePanel");
+  if (!panel) return;
+
+  panel.classList.remove("active");
+  panel.setAttribute("aria-hidden", "true");
+
+  const menu = document.getElementById("menu");
+  if (!menu || !menu.classList.contains("open")) {
+    document.body.classList.remove("no-scroll");
   }
-});
+}
+
+function removeProfileImage(){
+  localStorage.removeItem(RTR_PROFILE_IMAGE_KEY);
+
+  const preview = document.getElementById("profilePreview");
+  const previewImg = document.getElementById("profilePreviewImg");
+  const panelPreview = document.getElementById("profilePanelPreview");
+  const panelImg = document.getElementById("profilePanelImg");
+  const input = document.getElementById("profileImageInput");
+
+  if (previewImg) previewImg.removeAttribute("src");
+  if (preview) preview.classList.remove("has-image");
+
+  if (panelImg) panelImg.removeAttribute("src");
+  if (panelPreview) panelPreview.classList.remove("has-image");
+
+  if (input) input.value = "";
+}
+
+function handleProfileImageChange(event){
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+
+  if (!file.type.startsWith("image/")) {
+    alert("Elige una imagen válida.");
+    event.target.value = "";
+    return;
+  }
+
+  if (file.size > 2 * 1024 * 1024) {
+    alert("La imagen es muy pesada. Usa una menor a 2 MB.");
+    event.target.value = "";
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(){
+    const result = reader.result;
+    try {
+      localStorage.setItem(RTR_PROFILE_IMAGE_KEY, result);
+      setProfileImage(result);
+    } catch (error) {
+      alert("No se pudo guardar la imagen. Prueba con una imagen más liviana.");
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+function initHeader(){
+  const searchInput = document.getElementById("searchInput");
+  const imageInput = document.getElementById("profileImageInput");
+  const savedImage = localStorage.getItem(RTR_PROFILE_IMAGE_KEY);
+
+  updateLibraryNameInHeader();
+  if (savedImage) setProfileImage(savedImage);
+
+  if (searchInput) {
+    searchInput.addEventListener("keydown", function(e){
+      if(e.key === "Enter"){
+        const valor = this.value.trim();
+        if(valor !== ""){
+          window.location.href = "/catalogo?search=" + encodeURIComponent(valor);
+        }
+      }
+    });
+  }
+
+  if (imageInput) {
+    imageInput.addEventListener("change", handleProfileImageChange);
+  }
+
+  window.addEventListener("storage", function(e){
+    if (e.key === RTR_LIBRARY_STORAGE_KEY) updateLibraryNameInHeader();
+  });
+
+  document.addEventListener("click", function(e){
+    const panel = document.getElementById("menuInstructionsPanel");
+    const btn = document.getElementById("menuProfileHelp");
+    if (!panel || !panel.classList.contains("active")) return;
+    if (panel.contains(e.target) || (btn && btn.contains(e.target))) return;
+    closeMenuInstructions();
+  });
+
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape") {
+      const menu = document.getElementById("menu");
+      const overlay = document.getElementById("overlay");
+      if (menu) menu.classList.remove("open");
+      if (overlay) overlay.classList.remove("active");
+      closeProfilePanel();
+      closeMenuInstructions();
+      document.body.classList.remove("no-scroll");
+      cerrarBusqueda();
+    }
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initHeader);
+} else {
+  initHeader();
+}
+
 
 
 
