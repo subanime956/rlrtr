@@ -526,7 +526,7 @@ body::after{
 .layout{
   display:flex;
   gap:15px;
-  align-items:flex-start; /* 🔥 clave align-items:flex-start; */ 
+  align-items:stretch; /* 🔥 clave align-items:flex-start; */ 
 }
 
 /* IZQUIERDA */
