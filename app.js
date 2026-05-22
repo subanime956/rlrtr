@@ -16,7 +16,7 @@ card.innerHTML = `
             <img src="${item.img}" loading="lazy">
 
             <div class="label lang">
-                ${item.label}
+                <img class="rtr-ep-flag" src="${item.flag}" alt="">
             </div>
 
             <div class="label-ep">
