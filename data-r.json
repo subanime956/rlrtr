@@ -1,5 +1,25 @@
 [
   {
+    "title": "Raphtalia x Naofumi Full Animation - Part&nbsp;2",
+    "label": "Latino",
+    "flag": "/assets/img/lat.png",
+    "ep": "03:43",
+    "desc": "Rule del creador Maplestar",
+    "img": "/assets/img/cover/RXNP2-1-Lat-HAF.webp",
+    "play": "/ver/lat-haf-rxnp2-1",
+    "info": "/media/rxnp2"
+  },
+  {
+    "title": "Raphtalia x Naofumi Full Animation - Part&nbsp;2",
+    "label": "Japones",
+    "flag": "/assets/img/jap.png",
+    "ep": "03:43",
+    "desc": "Rule del creador Maplestar",
+    "img": "/assets/img/cover/RXNP2-1.webp",
+    "play": "/ver/raw-sub-eng-haf-rxnp2-1",
+    "info": "/media/rxnp2"
+  },
+  {
     "title": "Kuze x Alya Full Animation - Part&nbsp;1",
     "label": "Doblaje Latino",
     "flag": "/assets/img/lat.png",
