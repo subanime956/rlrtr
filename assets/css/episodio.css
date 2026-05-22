@@ -31,9 +31,10 @@ body::after{
   -webkit-touch-callout: none;
 }
 
-  html, body {
-    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
-    background: #1f2937;margin: 0 auto;
+   body {
+    font-family: 'Inter';
+    background: #1f2937;
+    margin: 0 auto;
   }
 
 
