@@ -424,28 +424,48 @@
 
     </section>
   </div>
+
 <footer style="
-  width:100%;
-  padding:14px 10px;
-  margin-top:4px;
-
-  background:#111827;
-  border-top:1px solid rgba(255,255,255,.08);
-
+  max-width:1250px;
+  margin:40px auto 0;
+  padding:28px 10px 34px;
   text-align:center;
+  background:#111827;
+  border-top:1px solid rgba(147,51,234,.45);
+  color:rgba(255,255,255,.68);
   font-size:13px;
-  line-height:1.6;
-  color:rgba(255,255,255,.72);
+  line-height:1.8;
 ">
-  © <span id="rtr-year"></span> AnimeRTR · DMCA · 
-  Este sitio no almacena ningún archivo en sus servidores. 
-  Todo el contenido es proporcionado por terceros externos.
+
+  <div style="margin-bottom:18px;color:rgba(255,255,255,.55);">
+    Ningún video se encuentra alojado en nuestros servidores.<br>
+    No video is hosted on our servers.
+  </div>
+
+  <div style="
+    display:flex;
+    justify-content:center;
+    gap:10px 16px;
+    flex-wrap:wrap;
+    margin-bottom:18px;
+  ">
+    <a href="/terminos" style="color:#c084fc;text-decoration:none;">Términos y condiciones</a>
+    <span style="color:rgba(255,255,255,.25);">-</span>
+    <a href="/dmca" style="color:#c084fc;text-decoration:none;">DMCA</a>
+    <span style="color:rgba(255,255,255,.25);">-</span>
+    <a href="/privacidad" style="color:#c084fc;text-decoration:none;">Políticas de privacidad</a>
+  </div>
+
+  <div style="color:#fff;font-weight:700;">
+    <span id="rtr-year"></span> © AnimeRTR
+  </div>
+
 </footer>
 
 <script>
-document.getElementById("rtr-year").textContent =
-new Date().getFullYear();
+document.getElementById("rtr-year").textContent = new Date().getFullYear();
 </script>
+      
 </div>
 </body>
 </html>
