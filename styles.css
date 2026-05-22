@@ -121,6 +121,10 @@ option {
 
     display:block;
 }
+.card:hover .rtr-ep-flag{
+    transform:none !important;
+}
+
 
 /* episodio */
 .label-ep {
