@@ -1,5 +1,25 @@
 [
   {
+    "title": "Aoi x Taro Full Animation - Parte 1",
+    "label": "Latino",
+    "flag": "/assets/img/lat.png",
+    "ep": "03:13",
+    "desc": "Rule hecho por Maplestar",
+    "img": "/assets/img/thumb/3-E1-LAT.jpg",
+    "play": "/r/3/E1-LAT",
+    "info": "/r/3"
+  }
+  ,{
+    "title": "[AngelYeah] Hinata and Naruto",
+    "label": "English",
+    "flag": "/assets/img/eng.png",
+    "ep": "01:18",
+    "desc": "Rule hecho por AngelYeah",
+    "img": "/assets/img/thumb/2-1.jpg",
+    "play": "/r/2/EN",
+    "info": "/r/2"
+  }
+  ,{
     "title": "Deprived Diva - Hatsune Miku",
     "label": "English",
     "flag": "/assets/img/eng.png",
